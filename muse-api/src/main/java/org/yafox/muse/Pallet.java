@@ -9,6 +9,6 @@ public interface Pallet {
     
     Map<String, Object> getBeansWithAnnotation(Class<? extends Annotation> annotationType) throws Exception;
     
-    String loadResourceAsString(String resourceId) throws Exception;
+    String getString(String resourceId) throws Exception;
     
 }

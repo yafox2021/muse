@@ -1,6 +1,6 @@
 package org.yafox.muse.validate;
 
-public class ValidateRule extends AbstractNode {
+public class Validation extends AbstractNode {
 
     public void validate(Object target) throws Exception {
         if (validators != null) {

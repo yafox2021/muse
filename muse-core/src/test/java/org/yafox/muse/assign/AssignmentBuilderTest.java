@@ -23,7 +23,7 @@ public class AssignmentBuilderTest {
         pallet.addBeanType("authorName", StringSuggestion.class);
         pallet.addBeanType("age", IntegerSuggestion.class);
         
-        String txt = pallet.loadResourceAsString("assign1.json");
+        String txt = pallet.getString("/assign/assign1.json");
         
         Gson gson = new Gson();
         

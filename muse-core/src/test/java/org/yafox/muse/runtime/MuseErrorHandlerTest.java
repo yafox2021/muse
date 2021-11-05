@@ -13,9 +13,9 @@ public class MuseErrorHandlerTest {
     public void testSpecial() throws Exception {
         MuseErrorHandler h = new MuseErrorHandler();
         h.init();
-        Integer code = h.findErrorCode(new SQLException());
+        Integer code = h.findCode(new SQLException());
         assertTrue(code == 2);
-        assertEquals("error in sql", h.findErrorMsg(new SQLException()));
+        assertEquals("error in sql", h.findMsg(new SQLException()));
     }
     
     @Test

@@ -69,11 +69,11 @@ public class MockPallet implements Pallet {
         return result;
     }
 
-    public String loadResourceAsString(String resourceId) throws Exception {
+    public String getString(String resourceId) throws Exception {
         InputStream inputStream = null;
         StringBuilder builder = new StringBuilder();
         try {
-            inputStream = MockPallet.class.getClassLoader().getResourceAsStream(basePath + resourceId);
+            inputStream = MockPallet.class.getResourceAsStream(resourceId);
             if (inputStream == null) {
                 return null;
             }

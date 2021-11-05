@@ -77,11 +77,11 @@ public class MuseErrorHandler implements ErrorHandler {
             error.setMsg(customizedException.getMsg());
             error.setExt(customizedException.getExt());
         } else {
-            error.setMsg(findErrorMsg(t));
+            error.setMsg(findMsg(t));
         }
 
         if (error.getCode() == 0) {
-            Integer code = findErrorCode(t);
+            Integer code = findCode(t);
             error.setCode(code);
         }
         
@@ -90,7 +90,7 @@ public class MuseErrorHandler implements ErrorHandler {
     }
     
     @SuppressWarnings("rawtypes")
-    protected Integer findErrorCode(Throwable t) {
+    protected Integer findCode(Throwable t) {
         Integer code = 1;
         if (errorCodeMap == null) {
             return code;
@@ -108,7 +108,7 @@ public class MuseErrorHandler implements ErrorHandler {
         return configValue == null ? code : configValue;
     }
     
-    protected String findErrorMsg(Throwable t) {
+    protected String findMsg(Throwable t) {
         if (errorCodeMap == null) {
             return t.getMessage();
         }

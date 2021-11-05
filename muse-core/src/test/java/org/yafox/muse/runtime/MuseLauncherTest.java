@@ -9,7 +9,7 @@ import org.yafox.muse.service.impl.DemoServiceImpl;
 
 public class MuseLauncherTest {
 
-    @Test
+    @Test(expected = Exception.class)
     public void test() throws Exception {
         MockPallet pallet = new MockPallet();
         pallet.addBean("demoService", new DemoServiceImpl());

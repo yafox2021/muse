@@ -19,8 +19,8 @@ import org.yafox.muse.annotation.Fn;
 import org.yafox.muse.annotation.Svc;
 import org.yafox.muse.assign.Assignment;
 import org.yafox.muse.assign.AssignmentBuilder;
-import org.yafox.muse.validate.Validator;
-import org.yafox.muse.validate.ValidatorBuilder;
+import org.yafox.muse.validate.Validation;
+import org.yafox.muse.validate.ValidationBuilder;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -46,7 +46,7 @@ public class MuseLauncher implements Launcher {
         Set<String> serviceIdSet = invokerTypeMap.keySet();
         Gson gson = new Gson();
         for (String id : serviceIdSet) {
-            String configJsonString = pallet.loadResourceAsString("/rules" + id + ".json");
+            String configJsonString = pallet.getString("/rules" + id + ".json");
             if (configJsonString == null) {
                 continue;
             }
@@ -58,7 +58,7 @@ public class MuseLauncher implements Launcher {
                 String beanName = ruleJsonObject.get("beanName").getAsString();
                 Object target = pallet.getBean(beanName);
                 if (target == null) {
-                    throw new Exception("no bean found for name " + beanName);
+                    throw new Exception("error in file /rules" + id + ".json no bean found for name " + beanName);
                 }
                 AbstractInvoker invoker = (AbstractInvoker) invokerType.newInstance();
                 invoker.setId(id);
@@ -73,18 +73,18 @@ public class MuseLauncher implements Launcher {
         MuseInvoker museInvoker = new MuseInvoker();
         museInvoker.setDelegate(invoker);
         
-        JsonElement assignJsonElement = jsonObject.get("assign");
+        JsonElement assignJsonElement = jsonObject.get("assignment");
         if (assignJsonElement != null && !assignJsonElement.isJsonNull()) {
             JsonObject assignmentJsonObject = assignJsonElement.getAsJsonObject();
             Assignment assignment = AssignmentBuilder.build(assignmentJsonObject, pallet);
             museInvoker.setAssignment(assignment);
         }
         
-        JsonElement validateJsonElement = jsonObject.get("validate");
+        JsonElement validateJsonElement = jsonObject.get("validation");
         if (validateJsonElement != null && !validateJsonElement.isJsonNull()) {
             JsonObject validateJsonObject = validateJsonElement.getAsJsonObject();
-            Validator validator = ValidatorBuilder.build(validateJsonObject, pallet);
-            museInvoker.setValidator(validator);
+            Validation validation = ValidationBuilder.build(validateJsonObject, pallet);
+            museInvoker.setValidation(validation);
         }
         
         JsonElement maskJsonElement = jsonObject.get("mask");

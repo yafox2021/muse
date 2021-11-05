@@ -31,7 +31,7 @@ public class MusePallet implements Pallet, ApplicationContextAware {
         return applicationContext.getBeansWithAnnotation(annotationType);
     }
 
-    public String loadResourceAsString(String resourceId) throws Exception {
+    public String getString(String resourceId) throws Exception {
         Resource resource = resolver.getResource(resourceId);
         if (!resource.exists()) {
             return null;

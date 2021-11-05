@@ -2,13 +2,13 @@
 package org.yafox.muse;
 
 import org.yafox.muse.assign.Assignment;
-import org.yafox.muse.validate.Validator;
+import org.yafox.muse.validate.Validation;
 
 public class MuseInvoker extends DelegateInvoker {
 
     private Assignment assignment;
 
-    private Validator validator;
+    private Validation validation;
 
     private Assignment mask;
 
@@ -18,8 +18,8 @@ public class MuseInvoker extends DelegateInvoker {
             assignment.assign(input);
         }
 
-        if (validator != null) {
-            validator.validate(input);
+        if (validation != null) {
+            validation.validate(input);
         }
 
         Object result = super.invoke(input);
@@ -40,12 +40,12 @@ public class MuseInvoker extends DelegateInvoker {
         this.assignment = assignment;
     }
 
-    public Validator getValidator() {
-        return validator;
+    public Validation getValidation() {
+        return validation;
     }
 
-    public void setValidator(Validator validator) {
-        this.validator = validator;
+    public void setValidation(Validation validation) {
+        this.validation = validation;
     }
 
     public Assignment getMask() {

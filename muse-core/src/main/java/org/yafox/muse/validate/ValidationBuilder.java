@@ -13,9 +13,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-public class ValidatorBuilder {
+public class ValidationBuilder {
 
-    private ValidateRule validateRule = new ValidateRule();
+    private Validation validation = new Validation();
 
     private Map<String, AbstractNode> nodeMap = new HashMap<String, AbstractNode>();
 
@@ -25,16 +25,16 @@ public class ValidatorBuilder {
 
     private Gson gson = new Gson();
 
-    public ValidatorBuilder() {
-        nodeMap.put("", validateRule);
+    public ValidationBuilder() {
+        nodeMap.put("", validation);
     }
 
-    public static Validator build(JsonObject config, Pallet pallet) throws Exception {
-        ValidatorBuilder builder = new ValidatorBuilder();
+    public static Validation build(JsonObject config, Pallet pallet) throws Exception {
+        ValidationBuilder builder = new ValidationBuilder();
         builder.config = config;
         builder.pallet = pallet;
         builder.build();
-        return builder.validateRule;
+        return builder.validation;
     }
 
     public void build() throws Exception {
