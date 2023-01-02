@@ -1,0 +1,14 @@
+{
+	"name": {
+		"type": "bookName",
+		"value": "book001"
+	},
+	"author/name": {
+		"type": "authorName",
+		"value": "author001"
+	},
+	"author/age": {
+		"type": "age",
+		"value": 45
+	}
+}
